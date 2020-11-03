@@ -22,7 +22,7 @@ void isButtonPressed() {
 		stateOfButton = 0;
 	}
 
-	if (stateOfButton == 0 & previousButtonState == 0) {
+	if (stateOfButton == 1 & previousButtonState == 0) {
 		printf_P(PSTR("%s"), buttonPressed);
 	}
 	else if (stateOfButton == 0 && previousButtonState == 1) {
