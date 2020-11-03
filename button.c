@@ -10,7 +10,7 @@ uint8_t stateOfButton = 0;
 uint8_t previousButtonState = 0;
 
 void button_init() {
-	DDRB &= ~(1 << PD2); //Input for PD2
+	DDRD &= ~(1 << PD2); //Input for PD2
 }
 
 void isButtonPressed() { 
