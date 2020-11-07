@@ -10,5 +10,9 @@ int uart_putchar(char chr, FILE *stream);
 
 char uart_getchar(void);
 
+void adc_init(void);
+
+int readAdc(void);
+
 #endif
 

@@ -32,3 +32,24 @@ char uart_getchar(void) {
 	return UDR0;
 }
 
+void adc_init() {
+	ADMUX |= (1 << ADLAR); // vänsterjusterad 8bit data
+	ADMUX |= (1 << REFS0); // referensspänning vcc
+	ADCSRA |= (1 << ADEN); // Writing this bit to one enables the ADC. By writing it to zero, the ADC is turned off.
+						   // Turning the ADC off while a conversion is in progress, will terminate this conversion.
+	ADCSRA |= (1 << ADIE); //Writing this bit to one enables the interrupt
+	ADCSRA |= (1 << ADPS0) | (1 << ADPS1) | (0 << ADPS0); // this sets the prescaler to 8
+
+}
+
+int readAdc() {
+
+	int adcValue;
+	
+	ADCSRA |= (1 << ADSC); // This will start each conversion on single mode
+	
+	adcValue = ADCH;
+
+	return adcValue;
+}
+

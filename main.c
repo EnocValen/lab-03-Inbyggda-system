@@ -8,6 +8,18 @@
 #include "timer.h"
 #include "button.h"
 
+volatile int globalADCValue;
+
+ISR(TIMER2_COMPA_vect) {  
+    ADCSRA |= (1 << ADSC);
+    OCR0A = adc_val;
+}
+
+ISR(ADC_vect) {
+    globalADCValue = readAdc();
+}
+
+
 
 int main (void) {
 
@@ -15,12 +27,11 @@ int main (void) {
 	uart_init();
 	timer_init();
     button_init();
+    adc_init();
 
 
     while (1)
     {
-        isButtonPressed();
-
     }
     return 0;
 }
